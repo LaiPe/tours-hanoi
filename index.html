@@ -22,33 +22,35 @@
         </div>
     </header>
     <main>
-        <div id="container-tours">
-            <div class="tour"></div>
-            <div class="tour"></div>
-            <div class="tour"></div>
-        </div>
-        <div id="container-commands">
-            <div>
-                <label for="nb-plates"></label>
-                <input id="nb-plates" type="number">
-                <button id="initialize">Initialiser</button>
+        <div id="container-idle">
+            <div id="container-tours">
+                <div class="tour"></div>
+                <div class="tour"></div>
+                <div class="tour"></div>
             </div>
-            <div>
-                <label for="idle-speed"></label>
-                <select id="idle-speed">
-                    <option value="0.25">x0.25</option>
-                    <option value="0.5">x0.5</option>
-                    <option value="1" selected>x1</option>
-                    <option value="2">x2</option>
-                    <option value="4">x4</option>
-                </select>
-                <button id="launch-idle">Lancer</button>
-                <button id="pause-idle">Pause</button>
+            <div id="container-commands">
+                <div>
+                    <label for="nb-plates"></label>
+                    <input id="nb-plates" type="number">
+                    <button id="initialize">Initialiser</button>
+                </div>
+                <div>
+                    <label for="idle-speed"></label>
+                    <select id="idle-speed">
+                        <option value="0.25">x0.25</option>
+                        <option value="0.5">x0.5</option>
+                        <option value="1" selected>x1</option>
+                        <option value="2">x2</option>
+                        <option value="4">x4</option>
+                    </select>
+                    <button id="launch-idle">Lancer</button>
+                    <button id="pause-idle">Pause</button>
+                </div>
+                <div>
+                    <button id="step-back">Étape précédente</button>
+                    <button id="step-forward">Étape suivante</button>
+                </div>     
             </div>
-            <div>
-                <button id="step-back">Étape précédente</button>
-                <button id="step-forward">Étape suivante</button>
-            </div>     
         </div>
         <aside>
             <section id="context">
