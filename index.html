@@ -22,37 +22,33 @@
         </div>
     </header>
     <main>
-        <div id="container-idle">
-            <div id="container-tours">
-                <div class="tour"></div>
-                <div class="tour"></div>
-                <div class="tour"></div>
+        <div id="container-tours">
+            <div class="tour"></div>
+            <div class="tour"></div>
+            <div class="tour"></div>
+        </div>
+        <div id="container-commands">
+            <div>
+                <label for="nb-plates"></label>
+                <input id="nb-plates" type="number">
+                <button id="initialize">Initialiser</button>
             </div>
-            <div id="container-commands">
-                <div>
-                    <label for="nb-plates"></label>
-                    <input id="nb-plates" type="number">
-                    <button id="initialize">Initialiser</button>
-                </div>
-                <div>
-                    <label for="idle-speed"></label>
-                    <select id="idle-speed">
-                        <option value="0.25">x0.25</option>
-                        <option value="0.5">x0.5</option>
-                        <option value="1">x1</option>
-                        <option value="2">x2</option>
-                        <option value="4">x4</option>
-                    </select>
-                    <button id="launch-idle">Lancer</button>
-                    <button id="pause-idle">Pause</button>
-                </div>
-                <div>
-                    <button id="step-back">Étape précédente</button>
-                    <button id="step-forward">Étape suivante</button>
-                </div>
-                
-                
+            <div>
+                <label for="idle-speed"></label>
+                <select id="idle-speed">
+                    <option value="0.25">x0.25</option>
+                    <option value="0.5">x0.5</option>
+                    <option value="1" selected>x1</option>
+                    <option value="2">x2</option>
+                    <option value="4">x4</option>
+                </select>
+                <button id="launch-idle">Lancer</button>
+                <button id="pause-idle">Pause</button>
             </div>
+            <div>
+                <button id="step-back">Étape précédente</button>
+                <button id="step-forward">Étape suivante</button>
+            </div>     
         </div>
         <aside>
             <section id="context">
@@ -70,7 +66,7 @@
                   L'algorithme employé afin de résoudre ce jeu est récursif et possède une
                   complexité <em><i>O(2<sup>n</sup>)</i></em>.
                 </p>
-                <pre><code class="language-javascript">function hanoi(n, from, to, pivot) {
+                <pre><code>function hanoi(n, from, to, pivot) {
     if (n == 1) {
         piles[to].push(piles[from].pop());
     } else {
