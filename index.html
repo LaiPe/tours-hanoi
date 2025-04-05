@@ -3,14 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tours de Hanoï</title>
+    <title>Tours de Hanoï - Simulateur du jeu des tours de Hanoi</title>
+    <link rel="icon" href="/img/logo.svg" type="image/svg">
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Overpass+Mono:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+        <img src="/img/logo.svg" alt="Logo de Tours de Hanoï">
+        <div class="title">
+            <h1>Tours de Hanoï</h1>
+            <h2>Simulateur du jeu des tours de Hanoi</h2>
+        </div>
+    </header>
+    <main>
+        <div id="container-idle">
+            <div id="container-tours">
+                <div class="tour"></div>
+                <div class="tour"></div>
+                <div class="tour"></div>
+            </div>
+            <div id="container-commands">
+                <div>
+                    <label for="nb-plates"></label>
+                    <input id="nb-plates" type="number">
+                    <button id="initialize">Initialiser</button>
+                </div>
+                <div>
+                    <label for="idle-speed"></label>
+                    <select id="idle-speed">
+                        <option value="0.25">x0.25</option>
+                        <option value="0.5">x0.5</option>
+                        <option value="1">x1</option>
+                        <option value="2">x2</option>
+                        <option value="4">x4</option>
+                    </select>
+                    <button id="launch-idle">Lancer</button>
+                    <button id="pause-idle">Pause</button>
+                </div>
+                <div>
+                    <button id="step-back">Étape précédente</button>
+                    <button id="step-forward">Étape suivante</button>
+                </div>
+                
+                
+            </div>
+        </div>
+        <aside>
+            <section id="context">
+                <h2>Contexte</h2>
+                <p>Les <strong>tours de Hanoï</strong> sont un <strong>jeu de réflexion</strong> imaginé par le mathématicien français Édouard Lucas, et consistant à déplacer des disques de diamètres différents d'une tour de « départ » à une tour d'« arrivée » en passant par une tour « intermédiaire », et ceci en un <em>minimum de coups</em>, tout en respectant les règles suivantes :</p>
+                <ul>
+                    <li><em>on ne peut déplacer plus d'un disque à la fois</em></li>
+                    <li><em>on ne peut placer un disque que sur un autre disque plus grand que lui ou sur un emplacement vide.</em></li>
+                </ul>
+                <p>On suppose que cette dernière règle est également respectée dans la configuration de départ.</p>
+            </section>
+            <section id="algorithm">
+                <h2>Algorithme</h2>
+                <p>
+                  L'algorithme employé afin de résoudre ce jeu est récursif et possède une
+                  complexité <em><i>O(2<sup>n</sup>)</i></em>.
+                </p>
+                <pre><code class="language-javascript">function hanoi(n, from, to, pivot) {
+    if (n == 1) {
+        piles[to].push(piles[from].pop());
+    } else {
+        hanoi(n - 1, from, pivot, to);
+        piles[to].push(piles[from].pop());
+        hanoi(n - 1, pivot, to, from);
+    }
+}             </code></pre>
+              </section>
+              
+        </aside>
+    </main>
+    <footer>
+        <span>Site réalisé par
+            <a href="https://portfolio.leopeyronnet.fr">Léo Peyronnet</a>
+        </span>
+    </footer>
 </body>
 </html>
