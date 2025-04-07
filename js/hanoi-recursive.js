@@ -6,29 +6,6 @@ function initPile(h) {
     return pile;
 }
 
-/*function printPiles(){
-    for (let i = 0 ; i < piles.length ; i++) {
-        console.log(piles[i]);
-    }
-    console.log("");
-}*/
-function printPiles(){
-    for (let i = h - 1 ; i >= 0 ; i--) {
-        for (let j = 0 ; j < piles.length ; j++){
-            if (piles[j][i] == undefined){
-                process.stdout.write("|");
-            } else {
-                process.stdout.write(piles[j][i].toString());
-            }
-            process.stdout.write("\t");
-        }
-        process.stdout.write("\n");
-    }
-    process.stdout.write("\n");
-    process.stdout
-
-}
-
 function hanoi(n,from,to,pivot){
     if (n == 1) {
         piles[to].push(piles[from].pop());
@@ -43,10 +20,43 @@ function hanoi(n,from,to,pivot){
     }
 }
 
-const h = 12;
-const piles = [initPile(h),[],[]];
+const tours = document.querySelectorAll(".tour");
+const nb_plates_input = document.querySelector("#nb-plates");
+const initialize_button = document.querySelector("#initialize");
+const idle_speed_input = document.querySelector("#idle-speed");
+const launch_idle_button = document.querySelector("#launch-idle");
+const pause_idle_button = document.querySelector("#pause-idle");
+const step_back_button = document.querySelector("#step-back");
+const step_forward_button = document.querySelector("#step-forward");
 
-printPiles();
-hanoi(h,0,2,1);
+let tours_listes;
+
+nb_plates_input.addEventListener("change", () => {
+    if (nb_plates_input.value != 0) {
+        initialize_button.disabled = false;
+    } else {
+        initialize_button.disabled = true;
+    }
+});
+
+initialize_button.addEventListener("click", () => {
+    let h = nb_plates_input.value;
+    tours_listes = [initPile(h),[],[]];
+
+    idle_speed_input.disabled = false;
+    launch_idle_button.disabled = false;
+    pause_idle_button.disabled = false;
+    step_back_button.disabled = false;
+    step_forward_button.disabled = false;
+});
 
 
+launch_idle_button.addEventListener("click", () => {
+    step_back_button.disabled = true;
+    step_forward_button.disabled = true;
+});
+
+pause_idle_button.addEventListener("click", () => {
+    step_back_button.disabled = false;
+    step_forward_button.disabled = false;
+});
