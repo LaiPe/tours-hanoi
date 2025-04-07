@@ -117,15 +117,89 @@ main {
 }
 
 
+
 #container-commands {
-    height: 3rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     column-gap: 3rem;
+    row-gap: 0.5rem;
     position: sticky;
     bottom: var(--footer-height);
+    padding: 0.5rem 1rem;
+
+    border-radius: 8px;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+}
+  
+#container-commands > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+  
+/* Style des inputs */
+#nb-plates {
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: white;
+    width: 80px;
+}
+  
+#idle-speed {
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+  
+/* Style commun pour les boutons */
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    color: white;
+    background-color: #333;
+}
+  
+button:hover {
+    background-color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
+ button:active {
+    transform: translateY(1px);
+}
+
+  /* Style pour les boutons désactivés */
+button:disabled {
+    background-color: #d1d1d1;
+    color: #999;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+  
+button:disabled:hover {
+    background-color: #d1d1d1;
+    box-shadow: none;
+    transform: none;
+}
+  
+button:disabled svg {
+    stroke: #999;
 }
 
 
