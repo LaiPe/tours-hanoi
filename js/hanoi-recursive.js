@@ -1,3 +1,17 @@
+const colors = [
+    "#1a75ff", // bleu vif
+    "#ff6b6b", // rouge corail
+    "#50c878", // vert émeraude
+    "#9370db", // violet moyen
+    "#ff8c00", // orange foncé
+    "#20b2aa", // turquoise clair
+    "#ff1493", // rose profond
+    "#ffd700", // or
+    "#8a2be2", // bleu violet
+    "#00ced1"  // turquoise moyen
+  ];
+
+
 function initPile(h) {
     let pile = [];
     for (let i = h ; i > 0 ; i--) {
@@ -18,6 +32,17 @@ function hanoi(n,from,to,pivot){
 
         hanoi(n-1,pivot,to,from);
     }
+}
+
+function updatePlateDimensions(plate){
+    plate.style.width = tours[0].width - (w / 100 * plate.getAttribute("num"))
+}
+
+function createPlateDOM(num){
+    const plate = document.createElement("div");
+    plate.setAttribute("num", num);
+    plate.style.background_color = colors[(num - 1) % colors.length];
+    plate.style.position = "absolute";
 }
 
 const tours = document.querySelectorAll(".tour");
@@ -60,3 +85,5 @@ pause_idle_button.addEventListener("click", () => {
     step_back_button.disabled = false;
     step_forward_button.disabled = false;
 });
+
+createPlateDOM(1);
