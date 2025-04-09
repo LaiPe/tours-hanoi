@@ -93,14 +93,18 @@ main {
     margin-bottom: 2%;
 }
 
-#container-tours .tour {
+.tour {
     --epaisseur-socle: 0.5vw;
     height: 85%;
     width: 25%;
     position: relative;
     padding-bottom: var(--epaisseur-socle);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
 }
-#container-tours .tour::before {
+.tour::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -109,7 +113,7 @@ main {
     height: var(--epaisseur-socle);
     border-radius: 10px;
 }
-#container-tours .tour::after {
+.tour::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -120,6 +124,13 @@ main {
     border-radius: 10px;
 }
 
+.plate {
+    border-radius: 10px;
+
+    position: relative;
+    z-index: 10;
+    height: 4%;
+}
 
 
 #container-commands {
@@ -133,6 +144,7 @@ main {
     position: sticky;
     bottom: var(--footer-height);
     padding: 0.5rem 1rem;
+    z-index: 20;
 
     border-radius: 8px;
     font-family: "Poppins", Arial, Helvetica, sans-serif;

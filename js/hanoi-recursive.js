@@ -34,15 +34,19 @@ function hanoi(n,from,to,pivot){
     }
 }
 
-function updatePlateDimensions(plate){
-    plate.style.width = tours[0].width - (w / 100 * plate.getAttribute("num"))
+function updatePlateWidth(plate){
+    let num = parseInt(plate.getAttribute("num"));
+    let w = 20 + (60 / nb_plates) * (num - 1);
+    plate.style.width = w + "%";
 }
 
 function createPlateDOM(num){
     const plate = document.createElement("div");
+    plate.classList.add("plate");
     plate.setAttribute("num", num);
-    plate.style.background_color = colors[(num - 1) % colors.length];
-    plate.style.position = "absolute";
+    plate.style.backgroundColor = colors[(num - 1) % colors.length];
+    updatePlateWidth(plate);
+    return plate;
 }
 
 const tours = document.querySelectorAll(".tour");
@@ -55,6 +59,7 @@ const step_back_button = document.querySelector("#step-back");
 const step_forward_button = document.querySelector("#step-forward");
 
 let tours_listes;
+let nb_plates;
 
 nb_plates_input.addEventListener("change", () => {
     if (nb_plates_input.value != 0) {
@@ -65,14 +70,18 @@ nb_plates_input.addEventListener("change", () => {
 });
 
 initialize_button.addEventListener("click", () => {
-    let h = nb_plates_input.value;
-    tours_listes = [initPile(h),[],[]];
+    nb_plates = nb_plates_input.value;
+    tours_listes = [initPile(nb_plates),[],[]];
 
     idle_speed_input.disabled = false;
     launch_idle_button.disabled = false;
     pause_idle_button.disabled = false;
     step_back_button.disabled = false;
     step_forward_button.disabled = false;
+
+    for (let i = 1; i <= nb_plates; i++){
+        tours[0].appendChild(createPlateDOM(i));
+    }
 });
 
 
@@ -85,5 +94,3 @@ pause_idle_button.addEventListener("click", () => {
     step_back_button.disabled = false;
     step_forward_button.disabled = false;
 });
-
-createPlateDOM(1);
