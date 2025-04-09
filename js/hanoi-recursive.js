@@ -51,7 +51,6 @@ function createPlateDOM(num){
 
 const tours = document.querySelectorAll(".tour");
 const nb_plates_input = document.querySelector("#nb-plates");
-const initialize_button = document.querySelector("#initialize");
 const idle_speed_input = document.querySelector("#idle-speed");
 const launch_idle_button = document.querySelector("#launch-idle");
 const pause_idle_button = document.querySelector("#pause-idle");
@@ -62,24 +61,25 @@ let tours_listes;
 let nb_plates;
 
 nb_plates_input.addEventListener("change", () => {
-    if (nb_plates_input.value != 0) {
-        initialize_button.disabled = false;
-    } else {
-        initialize_button.disabled = true;
-    }
-});
-
-initialize_button.addEventListener("click", () => {
     // Update variables
     nb_plates = nb_plates_input.value;
     tours_listes = [initPile(nb_plates),[],[]];
 
     // Update buttons
-    idle_speed_input.disabled = false;
-    launch_idle_button.disabled = false;
-    pause_idle_button.disabled = false;
-    step_back_button.disabled = false;
-    step_forward_button.disabled = false;
+    if (nb_plates_input.value != 0) {
+        idle_speed_input.disabled = false;
+        launch_idle_button.disabled = false;
+        pause_idle_button.disabled = false;
+        step_back_button.disabled = false;
+        step_forward_button.disabled = false;
+    } 
+    else {
+        idle_speed_input.disabled = true;
+        launch_idle_button.disabled = true;
+        pause_idle_button.disabled = true;
+        step_back_button.disabled = true;
+        step_forward_button.disabled = true;
+    }
 
     // Update DOM
     tours.forEach(tour => {
@@ -89,7 +89,6 @@ initialize_button.addEventListener("click", () => {
         tours[0].appendChild(createPlateDOM(i));
     }
 });
-
 
 launch_idle_button.addEventListener("click", () => {
     step_back_button.disabled = true;
