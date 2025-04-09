@@ -80,6 +80,9 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+
+
  
 #container-tours { 
     height: 100%;
@@ -95,6 +98,7 @@ main {
     height: 85%;
     width: 25%;
     position: relative;
+    padding-bottom: var(--epaisseur-socle);
 }
 #container-tours .tour::before {
     content: '';
