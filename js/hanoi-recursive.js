@@ -20,17 +20,17 @@ function initPile(h) {
     return pile;
 }
 
-function hanoi(n,from,to,pivot){
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function hanoi(n,from,to,pivot){
     if (n == 1) {
-        piles[to].push(piles[from].pop());
-        printPiles();
+        await movePlate(from,to);
     } else {
-        hanoi(n-1,from,pivot,to);
-
-        piles[to].push(piles[from].pop());
-        printPiles();
-
-        hanoi(n-1,pivot,to,from);
+        await hanoi(n-1,from,pivot,to);
+        await movePlate(from,to);
+        await hanoi(n-1,pivot,to,from);
     }
 }
 
@@ -47,6 +47,14 @@ function createPlateDOM(num){
     plate.style.backgroundColor = colors[(num - 1) % colors.length];
     updatePlateWidth(plate);
     return plate;
+}
+
+async function movePlate(from, to){
+    const plate = tours[from].querySelector(".plate:first-child");
+    plate.remove();
+    await sleep(200 / idle_speed_input.value);
+    tours[to].prepend(plate);
+    await sleep(500 / idle_speed_input.value);
 }
 
 const tours = document.querySelectorAll(".tour");
@@ -93,6 +101,7 @@ nb_plates_input.addEventListener("change", () => {
 launch_idle_button.addEventListener("click", () => {
     step_back_button.disabled = true;
     step_forward_button.disabled = true;
+    hanoi(nb_plates,0,2,1);
 });
 
 pause_idle_button.addEventListener("click", () => {
