@@ -70,15 +70,21 @@ nb_plates_input.addEventListener("change", () => {
 });
 
 initialize_button.addEventListener("click", () => {
+    // Update variables
     nb_plates = nb_plates_input.value;
     tours_listes = [initPile(nb_plates),[],[]];
 
+    // Update buttons
     idle_speed_input.disabled = false;
     launch_idle_button.disabled = false;
     pause_idle_button.disabled = false;
     step_back_button.disabled = false;
     step_forward_button.disabled = false;
 
+    // Update DOM
+    tours.forEach(tour => {
+        tour.querySelectorAll(".plate").forEach(plate => plate.remove());
+    });
     for (let i = 1; i <= nb_plates; i++){
         tours[0].appendChild(createPlateDOM(i));
     }
