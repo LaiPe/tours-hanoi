@@ -85,9 +85,15 @@ function createPlateDOM(num){
 
 async function movePlate(from, to){
     const plate = tours[from].querySelector(".plate:first-child");
+    if (!is_running) return;
+
     plate.remove();
+    if (!is_running) return;
     await sleep(200 / idle_speed_input.value);
+    if (!is_running) return;
+
     tours[to].prepend(plate);
+    if (!is_running) return;
     await sleep(500 / idle_speed_input.value);
 }
 
