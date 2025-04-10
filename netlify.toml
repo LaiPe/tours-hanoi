@@ -1,0 +1,5 @@
+[[redirects]]
+from = "https://tours-hanoi.netlify.app/*"
+to = "https://tours-hanoi.sandbox.leopeyronnet.fr/:splat"
+status = 301
+force = true
